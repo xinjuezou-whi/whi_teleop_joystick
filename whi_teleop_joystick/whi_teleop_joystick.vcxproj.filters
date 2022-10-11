@@ -26,5 +26,8 @@
     <ClInclude Include="include\whi_teleop_joystick\whi_teleop_joystick.h">
       <Filter>include\whi_teleop_joystick</Filter>
     </ClInclude>
+    <ClInclude Include="include\whi_teleop_joystick\joystick_base.h">
+      <Filter>include\whi_teleop_joystick</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

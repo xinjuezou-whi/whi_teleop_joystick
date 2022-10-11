@@ -39,6 +39,7 @@
     <ClCompile Include="src\whi_teleop_joystick_node.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\whi_teleop_joystick\joystick_base.h" />
     <ClInclude Include="include\whi_teleop_joystick\whi_teleop_joystick.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
