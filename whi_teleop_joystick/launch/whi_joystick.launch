@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- params -->
+  <rosparam file="$(find whi_teleop_joystick)/config/joystick_hardware.yaml" command="load"/>
+
+  <!-- hardware interface -->
+  <node name="whi_teleop_joystick" pkg="whi_teleop_joystick" type="whi_teleop_joystick_node" output="screen"/>
+</launch>

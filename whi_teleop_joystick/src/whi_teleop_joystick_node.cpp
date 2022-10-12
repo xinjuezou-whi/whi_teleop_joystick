@@ -41,14 +41,14 @@ int main(int argc, char** argv)
 	auto nodeHandle = std::make_shared<ros::NodeHandle>();
 
 	/// node logic
-	//auto monitor = std::make_unique<whi_motion_interface::BatteryMonitor>(nodeHandle);
+	auto joystick = std::make_unique<whi_motion_interface::Joystick>(nodeHandle);
 
 	// override the default ros sigint handler, with this override the shutdown will be gracefull
 	// NOTE: this must be set after the NodeHandle is created
 	signal(SIGINT, signalHandler);
 	functionWrapper = [&](int)
 	{
-		//monitor = nullptr;
+		joystick = nullptr;
 
 		// all the default sigint handler does is call shutdown()
 		ros::shutdown();

@@ -15,8 +15,7 @@ Changelog:
 2022-xx-xx: xxx
 ******************************************************************/
 #pragma once
-#include <ros/ros.h>
-//#include "battery_base.h"
+#include "joystick_base.h"
 
 namespace whi_motion_interface
 {
@@ -39,6 +38,6 @@ namespace whi_motion_interface
         std::unique_ptr<ros::Timer> non_realtime_loop_{ nullptr };
         ros::Duration elapsed_time_;
         double loop_hz_{ 10.0 };
-        //std::unique_ptr<BetteryBase> battery_inst_{ nullptr };
+        std::unique_ptr<JoystickBase> joystick_inst_{ nullptr };
     };
 }

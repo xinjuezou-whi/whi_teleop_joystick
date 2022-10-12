@@ -35,11 +35,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\sdk\joystick_serial.cpp" />
     <ClCompile Include="src\sdk\whi_teleop_joystick.cpp" />
     <ClCompile Include="src\whi_teleop_joystick_node.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\whi_teleop_joystick\joystick_base.h" />
+    <ClInclude Include="include\whi_teleop_joystick\joystick_serial.h" />
     <ClInclude Include="include\whi_teleop_joystick\whi_teleop_joystick.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -94,7 +96,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>/opt/ros/noetic/lib;/opt/ros/melodic/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>roslib;roscpp;rosconsole;rospack;rostime;roscpp_serialization;xmlrpcpp;cpp_common;rosconsole_log4cxx;rosconsole_backend_interface;actionlib;tf;tf2;tf2_ros;pthread;boost_system;%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>roslib;roscpp;rosconsole;rospack;rostime;roscpp_serialization;xmlrpcpp;cpp_common;rosconsole_log4cxx;rosconsole_backend_interface;actionlib;tf;tf2;tf2_ros;serial;pthread;boost_system;%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

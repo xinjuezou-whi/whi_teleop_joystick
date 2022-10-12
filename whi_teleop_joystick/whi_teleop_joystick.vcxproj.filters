@@ -21,12 +21,18 @@
     <ClCompile Include="src\sdk\whi_teleop_joystick.cpp">
       <Filter>src\sdk</Filter>
     </ClCompile>
+    <ClCompile Include="src\sdk\joystick_serial.cpp">
+      <Filter>src\sdk</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\whi_teleop_joystick\whi_teleop_joystick.h">
       <Filter>include\whi_teleop_joystick</Filter>
     </ClInclude>
     <ClInclude Include="include\whi_teleop_joystick\joystick_base.h">
+      <Filter>include\whi_teleop_joystick</Filter>
+    </ClInclude>
+    <ClInclude Include="include\whi_teleop_joystick\joystick_serial.h">
       <Filter>include\whi_teleop_joystick</Filter>
     </ClInclude>
   </ItemGroup>

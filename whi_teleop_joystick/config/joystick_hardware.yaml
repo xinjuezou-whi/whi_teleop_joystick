@@ -1,0 +1,15 @@
+whi_joystick_hardware:
+  loop_hz: 50 # hz
+  data_topic: joystick_data
+  max_linear: 0.3
+  max_angular: 1.0
+  ranges: [1951, 1951]
+  buttons: [0x01, 0x40]
+  buttons_function: ['reserved', 'enable']
+  hardware: serial
+  serial:
+    name: controller
+    port: /dev/ttyUSB0
+    baudrate: 115200
+    device_id: 0x01
+    data_head: 0xff
