@@ -7,7 +7,7 @@ whi_joystick_hardware:
   buttons: {'reserved': 0x01, 'enable': 0x40}
   hardware: serial
   serial:
-    name: controller
+    name: smc60_one_button
     port: /dev/ttyUSB0
     baudrate: 115200
     device_id: 0x01
