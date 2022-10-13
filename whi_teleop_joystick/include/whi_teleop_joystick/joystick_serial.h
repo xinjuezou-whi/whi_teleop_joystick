@@ -53,5 +53,5 @@ protected:
 	std::size_t pack_length_{ 10 };
 	std::thread th_read_;
 	std::atomic_bool terminated_{ false };
-	int16_t offset_{ 0x800 };
+	std::array<int16_t, 2> offsets_{ 0x800, 0x800 };
 };

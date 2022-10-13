@@ -1,11 +1,10 @@
 whi_joystick_hardware:
-  loop_hz: 50 # hz
-  data_topic: joystick_data
-  max_linear: 0.3
-  max_angular: 1.0
+  loop_hz: 50 #hz
+  data_topic: cmd_vel
+  max_linear: 0.3 #m/s
+  max_angular: 1.0 #rad/s
   ranges: [1951, 1951]
-  buttons: [0x01, 0x40]
-  buttons_function: ['reserved', 'enable']
+  buttons: {'reserved': 0x01, 'enable': 0x40}
   hardware: serial
   serial:
     name: controller

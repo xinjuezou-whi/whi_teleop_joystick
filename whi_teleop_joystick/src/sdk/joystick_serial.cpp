@@ -32,8 +32,6 @@ JoystickSerial::JoystickSerial(std::shared_ptr<ros::NodeHandle>& NodeHandle,
 	{
 		ROS_FATAL_STREAM_NAMED("failed to open serial %s", serial_port_.c_str());
 	}
-
-	boundary_ = pow(0xfa0 - offset_, 3.0);
 }
 
 JoystickSerial:: ~JoystickSerial()
@@ -60,13 +58,18 @@ void JoystickSerial::publish()
 {
 	if (pub_data_ && mtx_.try_lock())
 	{
-		geometry_msgs::Twist messageCmd;
-		// linear
-		messageCmd.linear.x = max_linear_ * pow(pose_[1] - offset_, 3.0) / boundary_;
-#ifndef DEBUG
-		std::cout << "linear: " << std::to_string(messageCmd.linear.x) << std::endl;
+		if ((button_triggered_ & buttons_["enable"]))
+		{
+			geometry_msgs::Twist messageCmd;
+			// linear
+			messageCmd.linear.x = max_linear_ * pow(pose_[1] - offsets_[1], 3.0) / boundaries_[1];
+			messageCmd.angular.z = max_angular_ * pow(offsets_[0] - pose_[0], 3.0) / boundaries_[0];
+#ifdef DEBUG
+			std::cout << "linear: " << std::to_string(messageCmd.linear.x) <<
+				" angular: " << std::to_string(messageCmd.angular.z) << std::endl;
 #endif
-		pub_data_->publish(messageCmd);
+			pub_data_->publish(messageCmd);
+		}
 
 		mtx_.unlock();
 	}
@@ -74,7 +77,8 @@ void JoystickSerial::publish()
 
 void JoystickSerial::sendCommand(uint8_t Id, uint8_t Len, uint8_t* Data)
 {
-
+	// TODO: leave for further requirements
+	serial_inst_->write(Data, Len);
 }
 
 void JoystickSerial::fetchData(unsigned char* Data, size_t Length)
@@ -95,6 +99,7 @@ void JoystickSerial::fetchData(unsigned char* Data, size_t Length)
 		{
 			pose_[i] = uint16_t((head[(i << 1) + 1 + offset] << 8) | head[(i << 1) + 2 + offset]);
 		}
+		button_triggered_ = head[7 + offset];
 		mtx_.unlock();
 
 		Length -= pack_length_;

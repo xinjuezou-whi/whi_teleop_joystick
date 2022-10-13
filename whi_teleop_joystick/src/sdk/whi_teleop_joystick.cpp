@@ -33,10 +33,12 @@ namespace whi_motion_interface
         double maxLinear = 0.0;
         double maxAngular = 0.0;
         std::vector<int> ranges;
+        JoystickBase::ButtonList buttons;
         node_handle_->param("/whi_joystick_hardware/data_topic", dataTopic, std::string("joystick_data"));
         node_handle_->param("/whi_joystick_hardware/max_linear", maxLinear, 0.3);
         node_handle_->param("/whi_joystick_hardware/max_angular", maxAngular, 1.0);
         node_handle_->getParam("/whi_joystick_hardware/ranges", ranges);
+        node_handle_->getParam("/whi_joystick_hardware/buttons", buttons);
 
         std::string hardwareStr;
         node_handle_->param("/whi_joystick_hardware/hardware", hardwareStr, std::string(hardware[ON_BOARD]));
@@ -56,6 +58,7 @@ namespace whi_motion_interface
             joystick_inst_ = std::make_unique<JoystickSerial>(node_handle_, name, dataTopic, deviceId, (uint8_t)dataHead, port, baudrate);
             joystick_inst_->setRanges(std::array<uint16_t, 2>({ uint16_t(ranges[0]), uint16_t(ranges[1]) }));
             joystick_inst_->setKinematicsLimits(maxLinear, maxAngular);
+            joystick_inst_->setButtons(buttons);
             ((JoystickSerial*)joystick_inst_.get())->fire();
         }
         else
