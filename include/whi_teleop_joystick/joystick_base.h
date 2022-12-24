@@ -40,6 +40,7 @@ public:
 		for (std::size_t i = 0; i < std::min(boundaries_.size(), ranges_.size()); ++i)
 		{
 			boundaries_[i] = pow(ranges_[i], 3.0);
+			boundaries_raw_[i] = ranges_[i];
 		}
 	}
 	void setKinematicsLimits(double MaxLinear, double MaxAngular)
@@ -62,6 +63,7 @@ protected:
 	std::array<uint16_t, 2> pose_;
 	std::array<uint16_t, 2> ranges_{ 0xfa0 };
 	std::array<double, 2> boundaries_{ 1.0, 1.0 };
+	std::array<double, 2> boundaries_raw_{ 1.0, 1.0 };
 	ButtonList buttons_;
 	uint16_t button_triggered_{ 0 };
 };

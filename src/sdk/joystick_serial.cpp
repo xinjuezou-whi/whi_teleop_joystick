@@ -63,7 +63,11 @@ void JoystickSerial::publish()
 			geometry_msgs::Twist messageCmd;
 			// linear
 			messageCmd.linear.x = max_linear_ * pow(pose_[1] - offsets_[1], 3.0) / boundaries_[1];
+#ifdef DAMPING_ANGULAR
 			messageCmd.angular.z = max_angular_ * pow(offsets_[0] - pose_[0], 3.0) / boundaries_[0];
+#else
+			messageCmd.angular.z = max_angular_ * (offsets_[0] - pose_[0]) / boundaries_raw_[0];
+#endif
 #ifdef DEBUG
 			std::cout << "linear: " << std::to_string(messageCmd.linear.x) <<
 				" angular: " << std::to_string(messageCmd.angular.z) << std::endl;
