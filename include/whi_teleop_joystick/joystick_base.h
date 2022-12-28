@@ -42,11 +42,16 @@ public:
 			boundaries_[i] = pow(ranges_[i], 3.0);
 			boundaries_raw_[i] = ranges_[i];
 		}
-	}
+	};
 	void setKinematicsLimits(double MaxLinear, double MaxAngular)
 	{
 		max_linear_ = MaxLinear;
 		max_angular_ = MaxAngular;
+	};
+	void setDamping(bool Linear, bool Angular)
+	{
+		damping_linear_ = Linear;
+		damping_angular_ = Angular;
 	};
 	using ButtonList = std::map<std::string, int>;
 	void setButtons(const ButtonList& Buttons) { buttons_ = Buttons; };
@@ -58,6 +63,8 @@ protected:
 	std::string device_name_;
 	std::string data_topic_{ "joystick_data" };
 	std::unique_ptr<ros::Publisher> pub_data_{ nullptr };
+	bool damping_linear_{ false };
+	bool damping_angular_{ false };
 	double max_linear_{ 0.3 }; // m/s
 	double max_angular_{ 1.0 }; // rad/s
 	std::array<uint16_t, 2> pose_;
