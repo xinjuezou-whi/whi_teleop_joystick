@@ -23,6 +23,8 @@ whi_joystick_hardware:
   max_angular: 1.0 #rad/s
   ranges: [1951, 1951] # ranges of x and y
   buttons: {'reserved': 0x01, 'enable': 0x40} # buttons on joystick mount
+  damping_linear: true
+  damping_angular: true
   hardware: serial # transmission type
   serial:
     name: smc60_one_button
