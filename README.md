@@ -9,7 +9,7 @@ Current support joystick series is SMC60:
 Such series has output options including CAN, RS-232/422/485, USB, by far only serial transmission is implemented. Other transmission implementation would be introduced following the requirements change of project
 
 ## Damping
-For better controlling, this node add damping effector by sampling the linear and angular velocity with a cubic function:
+For better controlling, this node add damping effector by sampling the linear and angular velocity with a cubic function which can be activated/deactivated by configure file:
 ![resistance](https://user-images.githubusercontent.com/72239958/195496660-91dfd4a4-c486-4bf1-a428-1f469e805df9.png)
 
 
